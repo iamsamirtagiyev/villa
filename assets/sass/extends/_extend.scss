@@ -1,0 +1,27 @@
+.default-btn{
+    background: $primary-color;
+    padding: 15px 30px;
+    color: $white;
+    font-family: sans-serif;
+    border-radius: 50px;
+    letter-spacing: 2px;
+    text-align: center;
+    &:hover{
+        background:#c4194f;
+    }
+}
+
+.ghost-btn{
+    background: transparent;
+    padding: 15px 30px;
+    color: $white;
+    font-family: sans-serif;
+    border-radius: 50px;
+    letter-spacing: 2px;
+    border: solid 2px $white;
+    text-align: center;
+    &:hover{
+        background:$white;
+        color: $black;
+    }
+}
