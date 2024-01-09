@@ -1,5 +1,6 @@
 const data = 'http://localhost:3000/data/'
 const favorites = 'http://localhost:3000/favorite/'
+const basket = 'http://localhost:3000/basket/'
 
 //--------------------> DOM <--------------------
 
@@ -19,6 +20,7 @@ const searchInput = document.querySelector('.search')
 
 //--------------------> Variables <--------------------
 let page = 1
+let count = 1
 let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 //--------------------> Scroll <--------------------
@@ -62,6 +64,7 @@ const showData = (page) => {
                     <button onclick="update(${item.id})" >Update</button>
                     <button onclick="deleteItem(${item.id})">Delete</button>
                     <button onclick="addFavorite(${item.id})">Add Favorite</button>
+                    <button onclick="addBasket(${item.id})">Add Basket</button>
                 </div>
                 <div class="image">
                     <img src=${item.image} alt="visit">
@@ -231,4 +234,22 @@ searchInput.oninput = (e) => {
         page = 1
         showData(page)
     }
+}
+
+//--------------------> Add Basket <--------------------
+
+const addBasket = (id) => {
+    axios.get(data + id).then(response => {
+        axios.get(basket).then(res => {
+            res.data.forEach(element => {
+                if(element.id == id){
+                    count++
+                    axios.patch(basket + id, {count: count}).then(res => showAlert('success', 'Item successfully added to basket'))
+                }
+                else{
+                    axios.post(basket, response.data).then(res => showAlert('success', 'Item successfully added to basket'))
+                }
+            })
+        })
+    })
 }
