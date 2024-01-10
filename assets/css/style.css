@@ -808,21 +808,26 @@ footer .footer-wrapper .icons i {
 }
 .basket .basket-wrapper .basket-list .list-item .left .image {
   position: relative;
-  width: 110px;
+  width: 150px;
   height: 60px;
+  transform-style: preserve-3d;
 }
 .basket .basket-wrapper .basket-list .list-item .left .image img {
-  width: 110px;
-  height: 60px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   object-fit: cover;
   border-radius: 2px;
+  backface-visibility: hidden;
 }
 .basket .basket-wrapper .basket-list .list-item .left .image i {
   position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 2px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgb(0, 0, 0);
   left: 0;
   top: 0;
   display: flex;
@@ -830,12 +835,11 @@ footer .footer-wrapper .icons i {
   justify-content: center;
   color: red;
   font-size: 30px;
-  opacity: 0;
-  pointer-events: none;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
 }
-.basket .basket-wrapper .basket-list .list-item .left .image:hover i {
-  opacity: 1;
-  pointer-events: all;
+.basket .basket-wrapper .basket-list .list-item .left .image:hover {
+  transform: rotateY(180deg);
 }
 .basket .basket-wrapper .basket-list .list-item .left span {
   font-size: 20px;

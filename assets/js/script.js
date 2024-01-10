@@ -241,16 +241,20 @@ searchInput.oninput = (e) => {
 const addBasket = (id) => {
     axios.get(data + id).then(response => {
         axios.get(basket).then(res => {
-            console.log(res.data);
-            res.data.forEach(element => {
-                if(element.id == id){
-                    count++
-                    axios.patch(basket + id, {count: count}).then(res => showAlert('success', 'Item successfully added to basket'))
-                }
-                else{
-                    axios.post(basket, response.data).then(res => showAlert('success', 'Item successfully added to basket'))
-                }
-            })
+            if (res.data.length == 0) {
+                axios.post(basket, response.data).then(res => showAlert('success', 'Item successfully added to basket'))
+            }
+            else {
+                res.data.forEach(element => {
+                    if (element.id == id) {
+                        count++
+                        axios.patch(basket + id, { count: count }).then(res => showAlert('success', 'Item successfully added to basket'))
+                    }
+                    else {
+                        axios.post(basket, response.data).then(res => showAlert('success', 'Item successfully added to basket'))
+                    }
+                })
+            }
         })
     })
 }
