@@ -241,6 +241,7 @@ searchInput.oninput = (e) => {
 const addBasket = (id) => {
     axios.get(data + id).then(response => {
         axios.get(basket).then(res => {
+            console.log(res.data);
             res.data.forEach(element => {
                 if(element.id == id){
                     count++
