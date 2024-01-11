@@ -560,6 +560,70 @@ nav {
             }
         }
 
+        .select-box{
+            z-index: 1;
+            position: relative;
+            width: 200px;
+            align-self: flex-end;
+            @include flex(flex-end, center);
+            flex-direction: column;
+            padding: 20px 0px;
+            .selection{
+                width: 200px;
+                padding: 5px 10px;
+                border-radius: 5px;
+                background: $white;
+                @include flex(center, center);
+                cursor: pointer;
+                input{
+                    width: 100%;
+                    font-size: 18px;
+                    font-family: sans-serif;
+                    background: transparent;
+                    pointer-events: none;
+                    text-transform: capitalize;
+                }
+                i{
+                    font-size: 25px;
+                    pointer-events: none;
+                }
+                &.active i{
+                    transform: rotate(180deg);
+                }
+            }
+            .options{
+                position: absolute;
+                width: 100%;
+                background: $white;
+                top: 60px;
+                left: 0;
+                height: 0;
+                border-radius: 5px;
+                @include flex;
+                flex-direction: column;
+                overflow: hidden;
+                gap: 2px;
+                label{
+                    width: 100%;
+                    cursor: pointer;
+                    padding: 5px 10px;
+                    input{
+                        display: none;
+                    }
+                    span{
+                        font-family: sans-serif;
+                        font-size: 18px;
+                    }
+                    &:hover{
+                        background: #bbbbbb;
+                    }
+                }
+                &.active{
+                    height: 112px;
+                }
+            }
+        }
+
         .card-list {
             margin-top: 30px;
             @include grid(3);

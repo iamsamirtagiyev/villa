@@ -16,6 +16,10 @@ const name = form.querySelector('.name')
 const dateInput = form.querySelector('.date')
 const addBtn = document.querySelector('.add')
 const searchInput = document.querySelector('.search')
+const selection = document.querySelector('.selection')
+const selectionValue = document.querySelector('.selection input')
+const options = document.querySelector('.options')
+const option = document.querySelectorAll('.option')
 
 
 //--------------------> Variables <--------------------
@@ -257,4 +261,73 @@ const addBasket = (id) => {
             }
         })
     })
+}
+
+//--------------------> Selection <--------------------
+
+document.onclick = (e) => {
+    if (e.target.classList.contains('selection')) {
+        options.classList.toggle('active')
+        selection.classList.toggle('active')
+    }
+    else {
+        options.classList.remove('active')
+        selection.classList.remove('active')
+    }
+}
+
+options.onclick = (e) => {
+    if (e.target.tagName == 'INPUT') {
+        selectionValue.value = e.target.value
+        cardList.innerHTML = ''
+        axios.get(data).then(response => {
+            if (e.target.value == 'a-z') {
+                let arr = response.data.sort((a, b) => a.name.localeCompare(b.name))
+                arr.forEach(item => {
+                    cardList.innerHTML += `
+                        <div class="card">
+                            <div class="overlay">
+                                <a href="details.html?id=${item.id}">View Details</a>
+                                <button onclick="update(${item.id})" >Update</button>
+                                <button onclick="deleteItem(${item.id})">Delete</button>
+                                <button onclick="addFavorite(${item.id})">Add Favorite</button>
+                                <button onclick="addBasket(${item.id})">Add Basket</button>
+                            </div>
+                            <div class="image">
+                                <img src=${item.image} alt="visit">
+                            </div>
+                            <div class="about">
+                                <p>${item.date}</p>
+                                <span>${item.name}</span>
+                            </div>
+                        </div>`
+                })
+            }
+            else if (e.target.value == 'z-a') {
+                let arr = response.data.sort((a, b) => b.name.localeCompare(a.name))
+                arr.forEach(item => {
+                    cardList.innerHTML += `
+                        <div class="card">
+                            <div class="overlay">
+                                <a href="details.html?id=${item.id}">View Details</a>
+                                <button onclick="update(${item.id})" >Update</button>
+                                <button onclick="deleteItem(${item.id})">Delete</button>
+                                <button onclick="addFavorite(${item.id})">Add Favorite</button>
+                                <button onclick="addBasket(${item.id})">Add Basket</button>
+                            </div>
+                            <div class="image">
+                                <img src=${item.image} alt="visit">
+                            </div>
+                            <div class="about">
+                                <p>${item.date}</p>
+                                <span>${item.name}</span>
+                            </div>
+                        </div>`
+                })
+            }
+            else{
+                showData(page)
+            }
+        })
+    }
 }

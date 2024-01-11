@@ -574,6 +574,75 @@ nav .menu .right .box p {
   color: #fff;
   cursor: pointer;
 }
+.recent .recent-wrapper .select-box {
+  z-index: 1;
+  position: relative;
+  width: 200px;
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 0px;
+}
+.recent .recent-wrapper .select-box .selection {
+  width: 200px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.recent .recent-wrapper .select-box .selection input {
+  width: 100%;
+  font-size: 18px;
+  font-family: sans-serif;
+  background: transparent;
+  pointer-events: none;
+  text-transform: capitalize;
+}
+.recent .recent-wrapper .select-box .selection i {
+  font-size: 25px;
+  pointer-events: none;
+}
+.recent .recent-wrapper .select-box .selection.active i {
+  transform: rotate(180deg);
+}
+.recent .recent-wrapper .select-box .options {
+  position: absolute;
+  width: 100%;
+  background: #fff;
+  top: 60px;
+  left: 0;
+  height: 0;
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  overflow: hidden;
+  gap: 2px;
+}
+.recent .recent-wrapper .select-box .options label {
+  width: 100%;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+.recent .recent-wrapper .select-box .options label input {
+  display: none;
+}
+.recent .recent-wrapper .select-box .options label span {
+  font-family: sans-serif;
+  font-size: 18px;
+}
+.recent .recent-wrapper .select-box .options label:hover {
+  background: #bbbbbb;
+}
+.recent .recent-wrapper .select-box .options.active {
+  height: 112px;
+}
 .recent .recent-wrapper .card-list {
   margin-top: 30px;
   display: grid;
